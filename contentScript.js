@@ -1,8 +1,3 @@
-// chrome.runtime.sendMessage({ action: "FINISH" }, function (response) {
-//   alert(response);
-// });
-let input = "a";
-
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if ((msg.from === 'popup') && (msg.subject === 'DOMInfo')) {
     const domInfo = {
@@ -10,12 +5,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       show_one_file_at_a_time_checked: document.querySelector('[data-testid="file-by-file"]').checked,
     };
 
-    // Directly respond to the sender (popup), 
-    // through the specified callback.
     sendResponse(domInfo);
     return;
   }
-
 
   switch (msg.action) {
     case "TOGGLE_FILE_BROWSER":
